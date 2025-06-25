@@ -1,74 +1,83 @@
-// --- Emotion Message & GIF Logic ---
 const emotions = [
   {
     message: "This is for my most beautiful and prettiest Princess 💖",
-    gif: "236edd320f07f4fb99a823ae19ef7c49.gif" 
+    gif: "236edd320f07f4fb99a823ae19ef7c49.gif"
   },
   {
-    message: "Even we have some hard days , i will always try to make sure you feel loved and safe with me 💞 ",
-    gif: "6721f229ec1eb83ef1110b7a0ec5572f.gif" 
+    message: "Even if we have some hard days, I will always try to make sure you feel loved and safe with me 💞",
+    gif: "6721f229ec1eb83ef1110b7a0ec5572f.gif"
   },
   {
-    message: "I know sometimes i can talk stupid , and can really say upseting things , but i just can't help the thought of lossing you ",
-    gif: "b710f21fee78da75eecb22b407658ead.gif" // Add your wow gif link here
+    message: "I know sometimes I talk stupid, and say upsetting things, but I just can't help the thought of losing you 😔",
+    gif: "b710f21fee78da75eecb22b407658ead.gif"
   },
   {
-    message: "But what important is at the end we always held to eachother nd fix everything together , and love eachother , The thing is this careless boy, cares more than i can explain abt you and will do anything to keep you smile protected 💗",
-    gif: "cfcc7cc8e55482c77ff28e29facde023.gif" // Add your sad gif link here
+    message: "What matters is that, in the end, we always hold on to each other and fix everything together. This careless boy cares more than he can ever explain — and he’ll do anything to protect your smile and keep you happy. 💗",
+    gif: "cfcc7cc8e55482c77ff28e29facde023.gif"
   },
   {
-    message: "I LOVE YOU MY SWEEET LITTLE BABY ADITU 💗  ",
-    gif: "61665bb472cd6e7ce74c8aaf5fa182f0.gif" // Add your angry gif link here
+    message: "I LOVE YOU MY SWEEET LITTLE BABY ADITU 💗",
+    gif: "61665bb472cd6e7ce74c8aaf5fa182f0.gif"
+  },
+  {
+    message: "I know I’ve done a lot of things that caused a mess... But please never forget how much I love you. I want to keep you safe and happy — always. Never give up on me, Aditu... 💔",
+    gif: "4dd76056feee92a2f0e669afc2361678.gif"
   }
- 
 ];
 
 let index = 0;
 
-// Wait until everything is loaded before adding event listeners
 window.onload = function () {
   const textBox = document.getElementById("emotionText");
   const gifBox = document.getElementById("emotionGif");
   const nextBtn = document.getElementById("nextBtn");
-
-  const music = document.getElementById("bgMusic");
   const musicBtn = document.getElementById("toggleMusic");
+  const bgMusic = document.getElementById("bgMusic");
 
-  // Button to show next emotion + gif
+  // Typing Effect
+  function typeMessage(message, element) {
+    element.textContent = "";
+    let i = 0;
+    const chars = [...message]; // Handle emojis properly
+    const typing = setInterval(() => {
+      element.textContent += chars[i];
+      i++;
+      if (i >= chars.length) clearInterval(typing);
+    }, 50);
+  }
+
+  // Next button logic
   nextBtn.addEventListener("click", () => {
     const emotion = emotions[index];
-    textBox.textContent = emotion.message;
+    typeMessage(emotion.message, textBox);
     gifBox.src = emotion.gif;
-
-    index = (index + 1) % emotions.length; // Loop back to start
+    index = (index + 1) % emotions.length;
   });
 
-  // Music toggle button
+  // Music button logic
   musicBtn.addEventListener("click", () => {
-    if (music.paused) {
-      music.play();
+    if (bgMusic.paused) {
+      bgMusic.play();
       musicBtn.textContent = "🔊 Pause Music";
     } else {
-      music.pause();
+      bgMusic.pause();
       musicBtn.textContent = "🔈 Play Music";
     }
   });
 
-  // Auto-start music on first user click
+  // First click triggers music autoplay
   document.body.addEventListener("click", () => {
-    music.play();
+    if (bgMusic.paused) {
+      bgMusic.play();
+    }
   }, { once: true });
+
+  // Floating hearts
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 4 + Math.random() * 6 + "s";
+    document.body.appendChild(heart);
+  }
 };
-
-// --- Floating Hearts Logic ---
-setInterval(() => {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = 3 + Math.random() * 5 + 's';
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 8000); // remove after float
-}, 500);
