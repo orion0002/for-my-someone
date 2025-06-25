@@ -6,51 +6,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-hearts">
-       
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-
-    </div>
+  <!-- Floating Hearts Background -->
+  <div class="background-hearts">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
 
   <div class="main-wrapper">
-  <audio id="bgMusic" autoplay loop>
-  <source src="icitify.co.za - Maroon 5 - Girls Like You ft. Cardi B (Official Music Video) (320 KBps) (1).mp3
-" type="audio/mpeg" />
-  Your browser does not support the audio element.
-</audio>
-<button onclick="document.getElementById('bgMusic').play()">▶️ Play Music</button>
+    <audio id="bgMusic" src="Agar Tum Saath ho (Slowed+Reverb) - ARIJIT SINGH (mp3cut.net).mp3" loop></audio>
 
+    <!-- Music Button -->
+    <button id="toggleMusic">🔈 Play Music</button>
 
-
+    <!-- Digital Message -->
     <div class="digital-box">
-      <p id="emotionText">A little thing i made for my baby girl , press next  💡</p>
-      <button id="nextBtn">
-        NEXT
-        
-      </button>
+      <p id="emotionText">A little thing I made for my baby girl, press NEXT 💡</p>
+      <button id="nextBtn">NEXT</button>
     </div>
 
+    <!-- GIF Display -->
     <div class="gif-box">
       <img id="emotionGif" src="peach-goma-peach-and-goma.gif" alt="Your GIF will show here" />
     </div>
   </div>
 
+  <!-- JavaScript File -->
   <script src="script.js"></script>
-  <!-- Floating hearts -->
-<script>
-  for (let i = 0; i < 20; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = 4 + Math.random() * 6 + 's';
-    document.body.appendChild(heart);
-  }
-</script>
-
 </body>
 </html>
